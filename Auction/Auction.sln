@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{E7443831-D039-4B70-A6DA-1D5E9D9BBE9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Models", "Auction.Models\Auction.Models.csproj", "{84300E0C-10F9-419B-B815-5FC984B1D6EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84300E0C-10F9-419B-B815-5FC984B1D6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84300E0C-10F9-419B-B815-5FC984B1D6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84300E0C-10F9-419B-B815-5FC984B1D6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84300E0C-10F9-419B-B815-5FC984B1D6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84300E0C-10F9-419B-B815-5FC984B1D6EA} = {E7443831-D039-4B70-A6DA-1D5E9D9BBE9B}
+	EndGlobalSection
+EndGlobal
