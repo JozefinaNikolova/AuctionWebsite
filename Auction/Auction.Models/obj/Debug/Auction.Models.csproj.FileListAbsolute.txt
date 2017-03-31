@@ -1,0 +1,14 @@
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\Auction.Models.dll.config
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\Auction.Models.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\Auction.Models.pdb
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\EntityFramework.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\EntityFramework.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\obj\Debug\Auction.Models.csprojResolveAssemblyReference.cache
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\obj\Debug\Auction.Models.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Models\obj\Debug\Auction.Models.pdb
