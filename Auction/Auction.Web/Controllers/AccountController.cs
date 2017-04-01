@@ -152,7 +152,15 @@ namespace Auction.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User
+                {
+                    UserName = model.Email,
+                    FullName = model.FullName,
+                    Email = model.Email,
+                    Address = model.Address,
+                    PhoneNumber = model.PhoneNumber
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
