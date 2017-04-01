@@ -17,6 +17,21 @@ namespace Auction.Data
         public IDbSet<Offer> Offers { get; set; }
         public override IDbSet<User> Users { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Offer>()
+                .HasRequired(x => x.Owner)
+                .WithMany(x => x.OwnOffers)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Offer>()
+                .HasOptional(x => x.Buyer)
+                .WithMany(x => x.BoughtOffers)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public static AuctionContext Create()
         {
             return new AuctionContext();

@@ -23,10 +23,10 @@ namespace Auction.Models
         public DateTime TimeLeft { get; set; }
         public bool IsOpen { get; set; }
         public byte[] Photo { get; set; }
-        public User Owner { get; set; }
-        public User Buyer { get; set; }
-        public Category Category { get; set; }
-        public ICollection<Bid> Bids
+        public virtual User Owner { get; set; }
+        public virtual User Buyer { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Bid> Bids
         {
             get { return this.bids; }
             set { this.bids = value; }

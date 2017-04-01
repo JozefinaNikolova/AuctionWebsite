@@ -15,7 +15,7 @@ namespace Auction.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<Offer> Offers
+        public virtual ICollection<Offer> Offers
         {
             get { return this.offers; }
             set { this.offers = value; }

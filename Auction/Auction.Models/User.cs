@@ -23,17 +23,17 @@ namespace Auction.Models
         [Required]
         public string FullName { get; set; }
         public string Address { get; set; }
-        public ICollection<Offer> OwnOffers
+        public virtual ICollection<Offer> OwnOffers
         {
             get { return this.ownOffers; }
             set { this.ownOffers = value; }
         }
-        public ICollection<Offer> BoughtOffers
+        public virtual ICollection<Offer> BoughtOffers
         {
             get { return this.boughtOffers; }
             set { this.boughtOffers = value; }
         }
-        public ICollection<Bid> Bids
+        public virtual ICollection<Bid> Bids
         {
             get { return this.bids; }
             set { this.bids = value; }
