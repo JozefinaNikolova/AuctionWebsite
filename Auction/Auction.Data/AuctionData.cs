@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Auction.Data
 {
-    public class AuctionData
+    public class AuctionData : IAuctionData
     {
         private AuctionContext context;
         private IDictionary<Type, object> repositories;
