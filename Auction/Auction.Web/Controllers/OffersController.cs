@@ -2,6 +2,7 @@
 using Auction.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,16 @@ namespace Auction.Web.Controllers
 {
     public class OffersController : BaseController
     {
+        public ActionResult Index()
+        {
+            var offers = this.Data.Offers
+                .All()
+                .Where(x => x.IsOpen)
+                .Select(AllOffersViewModel.Create);
+
+            return View(offers);
+        }
+
         [HttpGet]
         public ActionResult Add()
         {
@@ -17,9 +28,22 @@ namespace Auction.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(AddOfferViewModel model)
+        public ActionResult Add(AddOfferViewModel model, HttpPostedFileBase file)
         {
-            var time = new DateTime(0, 0, model.Days, model.Hours, model.Minutes, 0);
+            var fileArr = new byte[file.ContentLength];
+
+            if (file != null)
+            {
+                string pic = Path.GetFileName(file.FileName);
+                
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    fileArr = ms.GetBuffer();
+                }
+            }
+
+            var time = new DateTime(2000, 1, model.Days, model.Hours, model.Minutes, 0);
             var category = this.Data.Categories.All().Where(x => x.Name == model.CategoryName).FirstOrDefault();
 
             var offer = new Offer()
@@ -31,7 +55,7 @@ namespace Auction.Web.Controllers
                 StartTime = time,
                 TimeLeft = time,
                 IsOpen = true,
-                Photo = model.Photo,
+                Photo = fileArr,
                 Owner = UserProfile,
                 Category = category
             };

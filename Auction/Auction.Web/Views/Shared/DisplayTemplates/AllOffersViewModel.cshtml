@@ -1,11 +1,26 @@
 ﻿@model Auction.Web.Models.AllOffersViewModel
 
+@{
+    var imgSrc = string.Empty;
+    if (Model.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Photo);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+}
+
 <div class="panel panel-default">
-    <div class="panel-body">
-        <p><strong>@Model.Name</strong></p>
-        <p>@Model.Photo</p>
-        <p>@Model.Description</p>
-        <p>@Model.CurrentPrice</p>
-        <p>@Model.TimeLeft</p>
+    <div class="row">
+        <div class="panel-body col-md-4 text-center">
+            <p><strong>@Model.Name</strong></p>
+            <img src="@imgSrc" width="100" height="100" />
+        </div>
+        <div class="panel-body col-md-4">
+            <p>@Model.CurrentPrice $</p>
+            <p>@Model.TimeLeft</p>
+        </div>
+        <div class="panel-body col-md-4">
+            <p>@Model.Description</p>
+        </div>
     </div>
 </div>
