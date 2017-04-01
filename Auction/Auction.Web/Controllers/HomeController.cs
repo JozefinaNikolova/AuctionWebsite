@@ -1,4 +1,5 @@
 ﻿using Auction.Data;
+using Auction.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,16 @@ using System.Web.Mvc;
 
 namespace Auction.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            var context = new AuctionContext();
-            context.Bids.Any();
-            return View();
+            var offers = this.Data.Offers
+                .All()
+                .Where(x => x.IsOpen)
+                .Select(AllOffersViewModel.Create);
+
+            return View(offers);
         }
 
         public ActionResult About()
