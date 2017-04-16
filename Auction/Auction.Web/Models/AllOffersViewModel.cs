@@ -10,7 +10,7 @@ namespace Auction.Web.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal CurrentPrice { get; set; }
-        public DateTime TimeLeft { get; set; }
+        public DateTime EndTime { get; set; }
         public byte[] Photo { get; set; }
 
         public static Expression<Func<Offer, AllOffersViewModel>> Create
@@ -23,7 +23,7 @@ namespace Auction.Web.Models
                     Name = x.Name,
                     Description = x.Description,
                     CurrentPrice = x.CurrentPrice,
-                    TimeLeft = x.TimeLeft,
+                    EndTime = x.EndTime,
                     Photo = x.Photo
                 };
             }

@@ -43,8 +43,14 @@ namespace Auction.Web.Controllers
                 }
             }
 
-            var time = new DateTime(2000, 1, model.Days, model.Hours, model.Minutes, 0);
-            var category = this.Data.Categories.All().Where(x => x.Name == model.CategoryName).FirstOrDefault();
+            var time = DateTime.Now
+                .AddDays(model.Days)
+                .AddHours(model.Hours)
+                .AddMinutes(model.Minutes);
+
+            var category = this.Data.Categories.All()
+                .Where(x => x.Name == model.CategoryName)
+                .FirstOrDefault();
 
             var offer = new Offer()
             {
@@ -52,8 +58,7 @@ namespace Auction.Web.Controllers
                 Description = model.Description,
                 StartPrice = model.StartPrice,
                 CurrentPrice = model.StartPrice,
-                StartTime = time,
-                TimeLeft = time,
+                EndTime = time,
                 IsOpen = true,
                 Photo = fileArr,
                 Owner = UserProfile,
@@ -63,7 +68,7 @@ namespace Auction.Web.Controllers
             this.Data.Offers.Add(offer);
             this.Data.SaveChanges();
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Offers");
         }
     }
 }

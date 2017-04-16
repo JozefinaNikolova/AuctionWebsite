@@ -19,8 +19,7 @@ namespace Auction.Models
         public string Description { get; set; }
         public decimal StartPrice { get; set; }
         public decimal CurrentPrice { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime TimeLeft { get; set; }
+        public DateTime EndTime { get; set; }
         public bool IsOpen { get; set; }
         public byte[] Photo { get; set; }
         public virtual User Owner { get; set; }

@@ -58,7 +58,7 @@ namespace Auction.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = "/Offers/Index";
             return View();
         }
 
