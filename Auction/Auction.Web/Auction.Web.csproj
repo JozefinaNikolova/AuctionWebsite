@@ -241,6 +241,7 @@
     <Content Include="Views\Shared\DisplayTemplates\AllOffersViewModel.cshtml" />
     <Content Include="Views\Offers\Add.cshtml" />
     <Content Include="Views\Offers\Details.cshtml" />
+    <Content Include="Views\Offers\My.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

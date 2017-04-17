@@ -21,6 +21,16 @@ namespace Auction.Web.Controllers
             return View(offers);
         }
 
+        public ActionResult My()
+        {
+            var offers = this.Data.Offers
+                .All()
+                .Where(x => !(x.IsOpen) && x.Owner.UserName == UserProfile.UserName)
+                .Select(AllOffersViewModel.Create);
+
+            return View(offers);
+        }
+
         [HttpGet]
         public ActionResult Add()
         {
