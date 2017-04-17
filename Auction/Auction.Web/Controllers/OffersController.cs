@@ -25,7 +25,17 @@ namespace Auction.Web.Controllers
         {
             var offers = this.Data.Offers
                 .All()
-                .Where(x => !(x.IsOpen) && x.Owner.UserName == UserProfile.UserName)
+                .Where(x => x.IsOpen && x.Owner.UserName == UserProfile.UserName)
+                .Select(AllOffersViewModel.Create);
+
+            return View(offers);
+        }
+
+        public ActionResult WonBids()
+        {
+            var offers = this.Data.Offers
+                .All()
+                .Where(x => !(x.IsOpen) && x.Buyer.UserName == UserProfile.UserName)
                 .Select(AllOffersViewModel.Create);
 
             return View(offers);
