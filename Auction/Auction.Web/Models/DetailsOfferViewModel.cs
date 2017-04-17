@@ -14,6 +14,7 @@ namespace Auction.Web.Models
         public decimal CurrentPrice { get; set; }
         public DateTime EndTime { get; set; }
         public byte[] Photo { get; set; }
+        public bool IsOpen { get; set; }
         public string OwnerId { get; set; }
         public string OwnerPhone { get; set; }
         public string OwnerEmail { get; set; }
@@ -35,6 +36,7 @@ namespace Auction.Web.Models
                     CurrentPrice = x.CurrentPrice,
                     EndTime = x.EndTime,
                     Photo = x.Photo,
+                    IsOpen = x.IsOpen,
                     OwnerId = x.Owner.Id,
                     OwnerPhone = x.Owner.PhoneNumber, 
                     OwnerEmail = x.Owner.Email,

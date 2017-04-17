@@ -92,5 +92,14 @@ namespace Auction.Web.Controllers
 
             return this.View(offer);
         }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            this.Data.Offers.Delete(id);
+            this.Data.SaveChanges();
+
+            return this.Redirect("/Offers/Index");
+        }
     }
 }
