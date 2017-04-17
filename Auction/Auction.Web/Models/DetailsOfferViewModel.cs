@@ -1,6 +1,7 @@
 ﻿using Auction.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq.Expressions;
 
 namespace Auction.Web.Models
@@ -10,16 +11,24 @@ namespace Auction.Web.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        [DisplayName("Start Price")]
         public decimal StartPrice { get; set; }
+        [DisplayName("Current Price")]
         public decimal CurrentPrice { get; set; }
+        [DisplayName("End Time")]
         public DateTime EndTime { get; set; }
         public byte[] Photo { get; set; }
         public bool IsOpen { get; set; }
         public string OwnerId { get; set; }
+        [DisplayName("Owner Phone Number")]
         public string OwnerPhone { get; set; }
+        [DisplayName("Owner Email")]
         public string OwnerEmail { get; set; }
+        [DisplayName("Owner Name")]
         public string OwnerName { get; set; }
+        [DisplayName("Buyer Name")]
         public string BuyerName { get; set; }
+        [DisplayName("Category")]
         public string CategoryName { get; set; }
         public ICollection<Bid> Bids { get; set; }
 

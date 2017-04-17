@@ -10,17 +10,9 @@
 }
 
 <div>
-    <h4>DetailsOfferViewModel</h4>
+    <h4>@Model.Name</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-    
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Photo)
         </dt>
@@ -116,10 +108,12 @@
 
 @if (Model.IsOpen)
 {
-    <button class="btn btn-success">Bid</button>
+    <p>
+        <button class="btn btn-success">Bid</button>
+    </p>
 
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        | @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
     </p>
 }
