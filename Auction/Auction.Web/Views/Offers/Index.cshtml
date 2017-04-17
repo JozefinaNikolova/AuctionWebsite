@@ -7,6 +7,7 @@
 <div class="jumbotron">
     <h1>All Offers</h1>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-2">
@@ -37,6 +38,13 @@
             </div>
         </div>
         <div class="col-sm-10">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Find by name: @Html.TextBox("SearchString")
+                    <input type="submit" value="Search" />
+                </p>
+            }
             @Html.DisplayFor(x => x.AllOffersViewModel)
         </div>
     </div>

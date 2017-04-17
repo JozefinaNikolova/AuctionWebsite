@@ -11,7 +11,7 @@ namespace Auction.Web.Controllers
 {
     public class OffersController : BaseController
     {
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, string searchString)
         {
             var categoryOffers = this.Data.Offers
                 .All()
@@ -21,6 +21,11 @@ namespace Auction.Web.Controllers
             {
                 categoryOffers = categoryOffers
                     .Where(x => x.Category.Id == id);
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                categoryOffers = categoryOffers.Where(x => x.Name.Contains(searchString));
             }
 
             var offers = categoryOffers.Select(AllOffersViewModel.Create);
