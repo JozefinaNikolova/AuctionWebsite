@@ -18,7 +18,10 @@ namespace Auction.Web.Controllers
                 .Where(x => x.IsOpen)
                 .Select(AllOffersViewModel.Create);
 
-            return View(offers);
+            var categories = this.Data.Categories.All().Select(x => x.Name).AsEnumerable();
+            var vm = new OffersCategoriesViewModel(offers, categories);
+
+            return View(vm);
         }
 
         public ActionResult My()
