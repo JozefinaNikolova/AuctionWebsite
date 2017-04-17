@@ -70,5 +70,17 @@ namespace Auction.Web.Controllers
 
             return this.RedirectToAction("Index", "Offers");
         }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var offer = this.Data.Offers
+                .All()
+                .Where(x => x.Id == id)
+                .Select(DetailsOfferViewModel.Create)
+                .FirstOrDefault();
+
+            return this.View(offer);
+        }
     }
 }

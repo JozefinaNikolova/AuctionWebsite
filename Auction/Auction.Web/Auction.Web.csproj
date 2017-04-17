@@ -178,6 +178,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddOfferViewModel.cs" />
     <Compile Include="Models\AllOffersViewModel.cs" />
+    <Compile Include="Models\DetailsOfferViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -239,6 +240,7 @@
     <Content Include="Views\Offers\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\AllOffersViewModel.cshtml" />
     <Content Include="Views\Offers\Add.cshtml" />
+    <Content Include="Views\Offers\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

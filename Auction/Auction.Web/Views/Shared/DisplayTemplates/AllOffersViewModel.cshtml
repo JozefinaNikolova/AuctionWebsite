@@ -9,7 +9,7 @@
     }
 }
 
-<div class="panel panel-default">
+<div class="panel panel-default" onclick="location.href='@Url.Action("Details", "Offers", new { id = Model.Id})'">
     <div class="row">
         <div class="panel-body col-md-4 text-center">
             <p><strong>@Model.Name</strong></p>

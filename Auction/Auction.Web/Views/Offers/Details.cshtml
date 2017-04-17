@@ -1,0 +1,123 @@
+﻿@model Auction.Web.Models.DetailsOfferViewModel
+
+@{
+    var imgSrc = string.Empty;
+    if (Model.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Photo);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+}
+
+<div>
+    <h4>DetailsOfferViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            <img src="@imgSrc" width="100" height="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.StartPrice)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.StartPrice)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentPrice)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.CurrentPrice)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerId)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.OwnerId)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerPhone)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.OwnerPhone)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerEmail)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.OwnerEmail)
+        </dd>
+    
+        <dt>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerName)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.OwnerName)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyerName)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.BuyerName)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+    
+    </dl>
+</div>
+
+<button class="btn btn-success">Bid</button>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
