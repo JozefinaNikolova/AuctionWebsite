@@ -29,7 +29,7 @@
                             <li class="active"><a href="/Offers/Index">All Categories</a></li>
                             @foreach (var category in Model.Categories)
                             {
-                                <li><a href="#">@category</a></li>
+                                <li><a href="/Offers/Index/@category.Id">@category.Name</a></li>
                             }
                         </ul>
                     </div><!--/.nav-collapse -->

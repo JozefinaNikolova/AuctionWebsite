@@ -4,13 +4,13 @@ namespace Auction.Web.Models
 {
     public class OffersCategoriesViewModel
     {
-        public OffersCategoriesViewModel(IEnumerable<AllOffersViewModel> offers, IEnumerable<string> categories)
+        public OffersCategoriesViewModel(IEnumerable<AllOffersViewModel> offers, IEnumerable<CategoryViewModel> categories)
         {
             this.AllOffersViewModel = offers;
             this.Categories = categories;
         }
 
         public IEnumerable<AllOffersViewModel> AllOffersViewModel { get; set; }
-        public IEnumerable<string> Categories { get; set; }
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }

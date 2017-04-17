@@ -180,6 +180,7 @@
     <Compile Include="Models\AddCategoryViewModel.cs" />
     <Compile Include="Models\AddOfferViewModel.cs" />
     <Compile Include="Models\AllOffersViewModel.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\DetailsOfferViewModel.cs" />
     <Compile Include="Models\EditOfferViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

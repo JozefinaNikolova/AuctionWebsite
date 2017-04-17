@@ -11,14 +11,21 @@ namespace Auction.Web.Controllers
 {
     public class OffersController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var offers = this.Data.Offers
+            var categoryOffers = this.Data.Offers
                 .All()
-                .Where(x => x.IsOpen)
-                .Select(AllOffersViewModel.Create);
+                .Where(x => x.IsOpen);
 
-            var categories = this.Data.Categories.All().Select(x => x.Name).AsEnumerable();
+            if (id != null)
+            {
+                categoryOffers = categoryOffers
+                    .Where(x => x.Category.Id == id);
+            }
+
+            var offers = categoryOffers.Select(AllOffersViewModel.Create);
+
+            var categories = this.Data.Categories.All().Select(CategoryViewModel.Create).AsEnumerable();
             var vm = new OffersCategoriesViewModel(offers, categories);
 
             return View(vm);
