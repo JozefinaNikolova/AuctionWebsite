@@ -53,7 +53,13 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult Add(AddOfferViewModel model, HttpPostedFileBase file)
         {
-            var fileArr = new byte[file.ContentLength];
+            int length = 0;
+            if(file != null)
+            {
+                length = file.ContentLength;
+            }
+
+            var fileArr = new byte[length];
 
             if (file != null)
             {
@@ -104,6 +110,60 @@ namespace Auction.Web.Controllers
                 .FirstOrDefault();
 
             return this.View(offer);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var offer = this.Data.Offers
+                .All()
+                .Where(x => x.Id == id)
+                .Select(EditOfferViewModel.Create)
+                .FirstOrDefault();
+
+            return this.View(offer);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditOfferViewModel model, HttpPostedFileBase file)
+        {
+            int length = 0;
+            if (file != null)
+            {
+                length = file.ContentLength;
+            }
+
+            var fileArr = new byte[length];
+
+            if (file != null)
+            {
+                string pic = Path.GetFileName(file.FileName);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    fileArr = ms.GetBuffer();
+                }
+            }
+
+            var category = this.Data.Categories.All()
+                .Where(x => x.Name == model.CategoryName)
+                .FirstOrDefault();
+
+            var offer = this.Data.Offers.Find(model.Id);
+            offer.Name = model.Name;
+            offer.Description = model.Description;
+            if(file != null)
+            {
+                offer.Photo = fileArr;
+            }
+
+            offer.EndTime = model.EndTime;
+            offer.Category = category;
+
+            this.Data.SaveChanges();
+
+            return this.RedirectToAction("Index", "Offers");
         }
 
         [HttpGet]
