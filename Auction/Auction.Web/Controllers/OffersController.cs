@@ -11,7 +11,7 @@ namespace Auction.Web.Controllers
 {
     public class OffersController : BaseController
     {
-        public ActionResult Index(int? id, string searchString)
+        public ActionResult Index(int? id, string searchString = default(string))
         {
             var categoryOffers = this.Data.Offers
                 .All()
@@ -185,6 +185,6 @@ namespace Auction.Web.Controllers
             this.Data.SaveChanges();
 
             return this.Redirect("/Offers/Index");
-        }
+        }        
     }
 }

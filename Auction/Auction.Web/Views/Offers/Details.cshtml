@@ -34,7 +34,7 @@
         </dt>
     
         <dd>
-            @Html.DisplayFor(model => model.StartPrice)
+            @Html.DisplayFor(model => model.StartPrice) $
         </dd>
     
         <dt>
@@ -42,7 +42,7 @@
         </dt>
     
         <dd>
-            @Html.DisplayFor(model => model.CurrentPrice)
+            @Html.DisplayFor(model => model.CurrentPrice) $
         </dd>
     
         <dt>
@@ -105,11 +105,21 @@
     
     </dl>
 </div>
+<div id="bid-history-@Model.Id">
+    @Ajax.ActionLink("Bid History >>", "BidsHistory", "Bids",
+    new { id = Model.Id },
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "bid-history-" + Model.Id
+    },
+    new { @class = "btn btn-default"})
+</div>
 
 @if (Model.IsOpen)
 {
     <p>
-        <button class="btn btn-success">Bid</button>
+        <button class="btn btn-success" onclick="location.href='@Url.Action("Add", "Bids", new { id = Model.Id})'">Bid</button>
     </p>
 
     <p>
@@ -121,3 +131,7 @@
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section scripts{
+    @Scripts.Render("~/bundles/ajax")
+}

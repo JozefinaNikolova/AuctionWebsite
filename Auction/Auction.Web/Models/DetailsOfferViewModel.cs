@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Auction.Web.Models
@@ -30,7 +31,7 @@ namespace Auction.Web.Models
         public string BuyerName { get; set; }
         [DisplayName("Category")]
         public string CategoryName { get; set; }
-        public ICollection<Bid> Bids { get; set; }
+        public IEnumerable<OfferBidsHistoryViewModel> Bids { get; set; }
 
         public static Expression<Func<Offer, DetailsOfferViewModel>> Create
         {
@@ -52,7 +53,7 @@ namespace Auction.Web.Models
                     OwnerName = x.Owner.FullName,
                     BuyerName = x.Buyer.FullName,
                     CategoryName = x.Category.Name,
-                    Bids = x.Bids
+                    Bids = x.Bids.AsQueryable().Select(OfferBidsHistoryViewModel.Create)
                 };
             }
         }

@@ -6,7 +6,7 @@ namespace Auction.Models
     {
         public int Id { get; set; }
         public decimal Price { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime Created { get; set; }
         public virtual Offer Offer { get; set; }
         public virtual User User { get; set; }
     }

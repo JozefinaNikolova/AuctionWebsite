@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BidsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -177,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddBidViewModel.cs" />
     <Compile Include="Models\AddCategoryViewModel.cs" />
     <Compile Include="Models\AddOfferViewModel.cs" />
     <Compile Include="Models\AllOffersViewModel.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Models\DetailsOfferViewModel.cs" />
     <Compile Include="Models\EditOfferViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OfferBidsHistoryViewModel.cs" />
     <Compile Include="Models\OffersCategoriesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -201,6 +204,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -250,6 +255,9 @@
     <Content Include="Views\Offers\My.cshtml" />
     <Content Include="Views\Categories\Add.cshtml" />
     <Content Include="Views\Offers\Edit.cshtml" />
+    <Content Include="Views\Bids\Add.cshtml" />
+    <Content Include="Views\Bids\_OfferBidsHistory.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\OfferBidsHistoryViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
