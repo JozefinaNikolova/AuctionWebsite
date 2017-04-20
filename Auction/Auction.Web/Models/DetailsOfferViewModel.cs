@@ -27,6 +27,7 @@ namespace Auction.Web.Models
         public string OwnerEmail { get; set; }
         [DisplayName("Owner Name")]
         public string OwnerName { get; set; }
+        public string OwnerUsername { get; set; }
         [DisplayName("Buyer Name")]
         public string BuyerName { get; set; }
         [DisplayName("Category")]
@@ -51,6 +52,7 @@ namespace Auction.Web.Models
                     OwnerPhone = x.Owner.PhoneNumber, 
                     OwnerEmail = x.Owner.Email,
                     OwnerName = x.Owner.FullName,
+                    OwnerUsername = x.Owner.UserName,
                     BuyerName = x.Buyer.FullName,
                     CategoryName = x.Category.Name,
                     Bids = x.Bids.AsQueryable().Select(OfferBidsHistoryViewModel.Create)

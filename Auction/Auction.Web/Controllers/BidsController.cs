@@ -11,12 +11,22 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult Add(int id)
         {
+            if(this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Add(int id, AddBidViewModel model)
         {
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var offer = this.Data.Offers.Find(id);
 
             var bid = new Bid()
@@ -50,6 +60,11 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult View(string id)
         {
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var bids = this.Data.Bids
                         .All()
                         .Where(x => x.User.Id == id)

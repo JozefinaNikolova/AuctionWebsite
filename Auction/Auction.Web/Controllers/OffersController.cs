@@ -38,6 +38,11 @@ namespace Auction.Web.Controllers
 
         public ActionResult My()
         {
+            if(this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var offers = this.Data.Offers
                 .All()
                 .Where(x => x.IsOpen && x.Owner.UserName == UserProfile.UserName)
@@ -48,6 +53,11 @@ namespace Auction.Web.Controllers
 
         public ActionResult WonBids()
         {
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var offers = this.Data.Offers
                 .All()
                 .Where(x => !(x.IsOpen) && x.Buyer.UserName == UserProfile.UserName)
@@ -59,12 +69,22 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult Add()
         {
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             return this.View();
         }
 
         [HttpPost]
         public ActionResult Add(AddOfferViewModel model, HttpPostedFileBase file)
         {
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             int length = 0;
             if(file != null)
             {
@@ -128,11 +148,22 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            var a = this.UserProfile;
             var offer = this.Data.Offers
                 .All()
                 .Where(x => x.Id == id)
                 .Select(EditOfferViewModel.Create)
                 .FirstOrDefault();
+
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
+            if(this.UserProfile.Id != offer.UserId && !isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
 
             return this.View(offer);
         }
@@ -140,6 +171,16 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult Edit(EditOfferViewModel model, HttpPostedFileBase file)
         {
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
+            if (this.UserProfile.Id != model.UserId && !isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             int length = 0;
             if (file != null)
             {
@@ -182,10 +223,21 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
+            var ownerId = this.Data.Offers.Find(id).Owner.Id;
+            if (this.UserProfile.Id != ownerId && !isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             this.Data.Offers.Delete(id);
             this.Data.SaveChanges();
 
             return this.Redirect("/Offers/Index");
-        }        
+        }
     }
 }

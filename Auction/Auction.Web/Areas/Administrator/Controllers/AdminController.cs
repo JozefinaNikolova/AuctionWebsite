@@ -10,6 +10,11 @@ namespace Auction.Web.Areas.Administrator.Controllers
         [HttpGet]
         public ActionResult Approve()
         {
+            if (!isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var offers = this.Data.Offers
                 .All()
                 .Where(x => !x.isApproved)
@@ -21,6 +26,11 @@ namespace Auction.Web.Areas.Administrator.Controllers
         [HttpGet]
         public ActionResult ApproveOffer(int id)
         {
+            if (!isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var offer = this.Data.Offers.Find(id);
             offer.isApproved = true;
             this.Data.SaveChanges();
@@ -31,6 +41,11 @@ namespace Auction.Web.Areas.Administrator.Controllers
         [HttpGet]
         public ActionResult DeleteOffer(int id)
         {
+            if (!isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var offer = this.Data.Offers.Delete(id);
             this.Data.SaveChanges();
 
@@ -39,6 +54,11 @@ namespace Auction.Web.Areas.Administrator.Controllers
         
         public ActionResult Users(string searchString = default(string))
         {
+            if (!isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var users = this.Data.Users.All().Select(UsersViewModel.Create);
 
             if (!string.IsNullOrEmpty(searchString))

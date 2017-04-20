@@ -122,10 +122,13 @@
         <button class="btn btn-success" onclick="location.href='@Url.Action("Add", "Bids", new { id = Model.Id})'">Bid</button>
     </p>
 
-    <p>
-        | @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
-    </p>
+    if (User.IsInRole("Administrator") || User.Identity.Name == Model.OwnerUsername)
+    {
+        <p>
+            | @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+        </p>
+    }
 }
 
 <p>

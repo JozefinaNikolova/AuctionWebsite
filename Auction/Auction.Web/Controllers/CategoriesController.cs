@@ -1,9 +1,5 @@
 ﻿using Auction.Models;
 using Auction.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Auction.Web.Controllers
@@ -13,12 +9,22 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult Add()
         {
+            if(!isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Add(AddCategoryViewModel model)
         {
+            if (!isAdmin())
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var category = new Category
             {
                 Name = model.Name

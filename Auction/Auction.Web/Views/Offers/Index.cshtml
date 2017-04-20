@@ -26,7 +26,10 @@
                         <h3>Categories</h3>
                         <hr />
                         <ul class="nav navbar-nav">
-                            <li><div class="btn btn-success"><a href="/Categories/Add">Add</a></div></li>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li><div class="btn btn-success"><a href="/Categories/Add">Add</a></div></li>
+                            }
                             <li class="active"><a href="/Offers/Index">All Categories</a></li>
                             @foreach (var category in Model.Categories)
                             {

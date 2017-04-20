@@ -15,6 +15,7 @@ namespace Auction.Web.Models
         public byte[] Photo { get; set; }
         [DisplayName("Category Name")]
         public string CategoryName { get; set; }
+        public string UserId { get; set; }
 
         public static Expression<Func<Offer, EditOfferViewModel>> Create
         {
@@ -27,7 +28,8 @@ namespace Auction.Web.Models
                     Description = x.Description,
                     EndTime = x.EndTime,
                     Photo = x.Photo,
-                    CategoryName = x.Category.Name
+                    CategoryName = x.Category.Name,
+                    UserId = x.Owner.Id
                 };
             }
         }
