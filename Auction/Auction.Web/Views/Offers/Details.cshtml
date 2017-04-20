@@ -118,9 +118,12 @@
 
 @if (Model.IsOpen)
 {
-    <p>
-        <button class="btn btn-success" onclick="location.href='@Url.Action("Add", "Bids", new { id = Model.Id})'">Bid</button>
-    </p>
+    if (User.Identity.IsAuthenticated)
+    {
+        <p>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Add", "Bids", new { id = Model.Id})'">Bid</button>
+        </p>
+    }
 
     if (User.IsInRole("Administrator") || User.Identity.Name == Model.OwnerUsername)
     {
