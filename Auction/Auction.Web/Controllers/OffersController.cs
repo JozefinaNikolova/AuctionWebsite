@@ -15,7 +15,7 @@ namespace Auction.Web.Controllers
         {
             var categoryOffers = this.Data.Offers
                 .All()
-                .Where(x => x.IsOpen);
+                .Where(x => x.IsOpen && x.isApproved);
 
             if (id != null)
             {

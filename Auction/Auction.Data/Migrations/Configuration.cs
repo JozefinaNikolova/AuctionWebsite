@@ -7,7 +7,6 @@ namespace Auction.Data.Migrations
     using Models;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity;
-    using System.IO;
 
     public sealed class Configuration : DbMigrationsConfiguration<Auction.Data.AuctionContext>
     {
