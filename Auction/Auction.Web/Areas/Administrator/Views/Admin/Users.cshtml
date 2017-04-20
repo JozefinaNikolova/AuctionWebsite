@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Auction.Web.Areas.Administrator.Models.UsersViewModel>
+
+<h2>Users</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by email or username: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table table-responsive table-hover">
+    <thead>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    </thead>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(user.Email, "View", "Bids", new { area = "", id = user.Id }, null)</td>
+            <td>@user.Username</td>
+            <td>@user.PhoneNumber</td>
+        </tr>
+    }
+</table>

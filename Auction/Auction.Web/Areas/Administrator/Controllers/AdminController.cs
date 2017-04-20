@@ -36,5 +36,17 @@ namespace Auction.Web.Areas.Administrator.Controllers
 
             return this.Redirect("/Admin/Approve");
         }
+        
+        public ActionResult Users(string searchString = default(string))
+        {
+            var users = this.Data.Users.All().Select(UsersViewModel.Create);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.Email.Contains(searchString) || u.Username.Contains(searchString));
+            }
+
+            return this.View(users);
+        }
     }
 }
