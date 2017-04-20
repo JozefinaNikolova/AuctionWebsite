@@ -46,5 +46,16 @@ namespace Auction.Web.Controllers
 
             return this.PartialView("_OfferBidsHistory", bids);
         }
+
+        [HttpGet]
+        public ActionResult View(string id)
+        {
+            var bids = this.Data.Bids
+                        .All()
+                        .Where(x => x.User.Id == id)
+                        .Select(BidsViewModel.Create);
+            
+            return this.View(bids);
+        }
     }
 }

@@ -187,6 +187,7 @@
     <Compile Include="Models\AddCategoryViewModel.cs" />
     <Compile Include="Models\AddOfferViewModel.cs" />
     <Compile Include="Models\AllOffersViewModel.cs" />
+    <Compile Include="Models\BidsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\DetailsOfferViewModel.cs" />
     <Compile Include="Models\EditOfferViewModel.cs" />
@@ -269,6 +270,7 @@
     <Content Include="Views\Bids\Add.cshtml" />
     <Content Include="Views\Bids\_OfferBidsHistory.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\OfferBidsHistoryViewModel.cshtml" />
+    <Content Include="Views\Bids\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

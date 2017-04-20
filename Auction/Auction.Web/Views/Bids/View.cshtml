@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Auction.Web.Models.BidsViewModel>
+
+@if (Model.Any())
+{
+    <h2>@Model.FirstOrDefault().User's bids</h2>
+    <hr />
+
+    <table class="table table-responsive table-hover">
+        <thead>
+        <th>Offer</th>
+        <th>Price</th>
+        <th>Created</th>
+        </thead>
+        @foreach (var bid in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(bid.OfferName, "Details", "Offers", new { area = "", id = bid.OfferId }, null)</td>
+                <td>@bid.Price</td>
+                <td>@bid.Created</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h2>No bids to show</h2>
+}
+
+
