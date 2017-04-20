@@ -14,7 +14,7 @@ using Auction.Models;
 namespace Auction.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -58,7 +58,15 @@ namespace Auction.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = "/Offers/Index";
+            if(this.isAdmin())
+            {
+                ViewBag.ReturnUrl = "/Admin/Approve";
+            }
+            else
+            {
+                ViewBag.ReturnUrl = "/Offers/Index";
+            }
+            
             return View();
         }
 
