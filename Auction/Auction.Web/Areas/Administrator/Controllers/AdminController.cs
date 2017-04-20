@@ -27,5 +27,14 @@ namespace Auction.Web.Areas.Administrator.Controllers
 
             return this.Redirect("/Admin/Approve");
         }
+
+        [HttpGet]
+        public ActionResult DeleteOffer(int id)
+        {
+            var offer = this.Data.Offers.Delete(id);
+            this.Data.SaveChanges();
+
+            return this.Redirect("/Admin/Approve");
+        }
     }
 }

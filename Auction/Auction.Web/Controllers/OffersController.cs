@@ -101,6 +101,7 @@ namespace Auction.Web.Controllers
                 CurrentPrice = model.StartPrice,
                 EndTime = time,
                 IsOpen = true,
+                isApproved = false,
                 Photo = fileArr,
                 Owner = UserProfile,
                 Category = category
