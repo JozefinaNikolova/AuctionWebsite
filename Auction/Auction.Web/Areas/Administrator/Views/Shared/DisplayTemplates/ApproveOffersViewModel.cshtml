@@ -17,7 +17,7 @@
         </div>
         <div class="panel-body col-md-4">
             <p>@Model.CurrentPrice $</p>
-            if(@Model.EndTime < @DateTime.Now)
+            @if (Model.EndTime < DateTime.Now)
             {
                 <p>EXPIRED</p>
             }

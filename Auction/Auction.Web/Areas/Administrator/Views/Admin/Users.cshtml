@@ -13,14 +13,14 @@
 
 <table class="table table-responsive table-hover">
     <thead>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Phone Number</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Phone Number</th>
     </thead>
     @foreach (var user in Model)
     {
         <tr>
-            <td>@Html.ActionLink(user.Email, "View", "Bids", new { area = "", id = user.Id }, null)</td>
+            <td>@Html.ActionLink(user.Email, "BidsView", "Bids", new { area = "", id = user.Id }, null)</td>
             <td>@user.Username</td>
             <td>@user.PhoneNumber</td>
         </tr>

@@ -267,7 +267,7 @@
     <Content Include="Views\Bids\Add.cshtml" />
     <Content Include="Views\Bids\_OfferBidsHistory.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\OfferBidsHistoryViewModel.cshtml" />
-    <Content Include="Views\Bids\View.cshtml" />
+    <Content Include="Views\Bids\BidsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

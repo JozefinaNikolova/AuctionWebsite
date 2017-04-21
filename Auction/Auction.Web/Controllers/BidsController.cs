@@ -59,7 +59,7 @@ namespace Auction.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult View(string id)
+        public ActionResult BidsView(string id)
         {
             if (this.UserProfile == null)
             {

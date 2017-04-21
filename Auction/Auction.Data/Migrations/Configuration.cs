@@ -14,7 +14,9 @@ namespace Auction.Data.Migrations
         private const string DefaultAdminFullName = "Admin";
         private const string DefaultAdminPhoneNumber = "07001700";
         private const string DefaultAdminPassword = "123456";
+
         private const string AdministratorRoleName = "Administrator";
+        private const string UserRoleName = "User";
 
         public Configuration()
         {
@@ -24,8 +26,11 @@ namespace Auction.Data.Migrations
 
         protected override void Seed(AuctionContext context)
         {
-            if(!context.Users.Any(x => x.Email == DefaultAdminEmail))
+            CreateRoles(context);
+            if (!context.Users.Any())
             {
+                CreateRoles(context);
+
                 var adminEmail = DefaultAdminEmail;
                 var adminUsername = adminEmail;
                 var adminFullName = DefaultAdminFullName;
@@ -42,12 +47,17 @@ namespace Auction.Data.Migrations
             }
         }
 
-        private void CreateAdminUser(AuctionContext context, string adminEmail, string adminUsername, string adminFullName, string adminPhoneNumber, string adminPassword, string adminRole)
+        private void CreateRoles(AuctionContext context)
         {
-            //Create admin role
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             roleManager.Create(new IdentityRole(AdministratorRoleName));
+            roleManager.Create(new IdentityRole(UserRoleName));
 
+            context.SaveChanges();
+        }
+
+        private void CreateAdminUser(AuctionContext context, string adminEmail, string adminUsername, string adminFullName, string adminPhoneNumber, string adminPassword, string adminRole)
+        {
             var adminUser = new User
             {
                 UserName = adminUsername,
