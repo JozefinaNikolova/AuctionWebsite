@@ -71,3 +71,10 @@ C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Microsoft.Owin.Secu
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\obj\Debug\Auction.Web.csprojResolveAssemblyReference.cache
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\obj\Debug\Auction.Web.dll
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\obj\Debug\Auction.Web.pdb
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.Web.Common.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.Web.Mvc.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\WebActivatorEx.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.Web.Common.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.Web.Mvc.xml
