@@ -15,7 +15,7 @@
             <p><strong>@Model.Name</strong></p>
             <img src="@imgSrc" width="100" height="100" />
         </div>
-        <div class="panel-body col-md-4">
+        <div class="panel-body col-md-4 text-center">
             <p>@Model.CurrentPrice $</p>
             @if(Model.EndTime < DateTime.Now)
             {
@@ -26,7 +26,7 @@
                 <p>Valid to: @Model.EndTime</p>
             }
         </div>
-        <div class="panel-body col-md-4">
+        <div class="panel-body col-md-4 text-center">
             <p>@Model.Description</p>
         </div>
     </div>

@@ -14,13 +14,40 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-
-        <dd>
             <img src="@imgSrc" width="100" height="100" />
-        </dd>
+        </dt>
+        <dd style="padding: 20px">
+            @if (Model.EndTime >= DateTime.Now)
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    <p>
+                        <button class="btn btn-success" onclick="location.href='@Url.Action("Add", "Bids", new { id = Model.Id})'">Bid</button>
+                    </p>
+                }
 
+                if (User.IsInRole("Administrator") || User.Identity.Name == Model.OwnerUsername)
+                {
+                    <p>
+                        | @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+                    </p>
+                }
+            }
+
+            <div id="bid-history-@Model.Id">
+                @Ajax.ActionLink("Bid History >>", "BidsHistory", "Bids",
+                new { id = Model.Id },
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "bid-history-" + Model.Id
+                },
+                new { @class = "btn btn-default" })
+            </div>
+        </dd>
+        <hr />
+        
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -28,6 +55,7 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
+        <hr />
     
         <dt>
             @Html.DisplayNameFor(model => model.StartPrice)
@@ -36,7 +64,8 @@
         <dd>
             @Html.DisplayFor(model => model.StartPrice) $
         </dd>
-    
+        <hr />
+
         <dt>
             @Html.DisplayNameFor(model => model.CurrentPrice)
         </dt>
@@ -44,7 +73,8 @@
         <dd>
             @Html.DisplayFor(model => model.CurrentPrice) $
         </dd>
-    
+        <hr />
+
         <dt>
             @Html.DisplayNameFor(model => model.EndTime)
         </dt>
@@ -56,7 +86,8 @@
         {
             <dd>@Html.DisplayFor(model => model.EndTime)</dd>
         }
-    
+        <hr />
+
         <dt>
             @Html.DisplayNameFor(model => model.OwnerPhone)
         </dt>
@@ -64,7 +95,8 @@
         <dd>
             @Html.DisplayFor(model => model.OwnerPhone)
         </dd>
-    
+        <hr />
+
         <dt>
             @Html.DisplayNameFor(model => model.OwnerEmail)
         </dt>
@@ -72,8 +104,7 @@
         <dd>
             @Html.DisplayFor(model => model.OwnerEmail)
         </dd>
-    
-        <dt>
+        <hr />
     
         <dt>
             @Html.DisplayNameFor(model => model.OwnerName)
@@ -82,6 +113,7 @@
         <dd>
             @Html.DisplayFor(model => model.OwnerName)
         </dd>
+        <hr />
     
         <dt>
             @Html.DisplayNameFor(model => model.BuyerName)
@@ -90,6 +122,7 @@
         <dd>
             @Html.DisplayFor(model => model.BuyerName)
         </dd>
+        <hr />
     
         <dt>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -101,34 +134,6 @@
     
     </dl>
 </div>
-<div id="bid-history-@Model.Id">
-    @Ajax.ActionLink("Bid History >>", "BidsHistory", "Bids",
-    new { id = Model.Id },
-    new AjaxOptions
-    {
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "bid-history-" + Model.Id
-    },
-    new { @class = "btn btn-default"})
-</div>
-
-@if (Model.EndTime >= DateTime.Now)
-{
-    if (User.Identity.IsAuthenticated)
-    {
-        <p>
-            <button class="btn btn-success" onclick="location.href='@Url.Action("Add", "Bids", new { id = Model.Id})'">Bid</button>
-        </p>
-    }
-
-    if (User.IsInRole("Administrator") || User.Identity.Name == Model.OwnerUsername)
-    {
-        <p>
-            | @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
-        </p>
-    }
-}
 
 <p>
     @Html.ActionLink("Back to List", "Index")

@@ -78,3 +78,5 @@ C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\WebActivatorEx.dll
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.xml
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.Web.Common.xml
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\Ninject.Web.Mvc.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\AutoMapper.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web\bin\AutoMapper.xml
