@@ -21,7 +21,6 @@ namespace Auction.Models
         public decimal CurrentPrice { get; set; }
         public DateTime EndTime { get; set; }
         public bool isApproved { get; set; }
-        public bool IsOpen { get; set; }
         public byte[] Photo { get; set; }
         public virtual User Owner { get; set; }
         public virtual User Buyer { get; set; }

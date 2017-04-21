@@ -48,18 +48,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.EndTime)
         </dt>
-    
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-    
-        <dt>
-            @Html.DisplayNameFor(model => model.OwnerId)
-        </dt>
-    
-        <dd>
-            @Html.DisplayFor(model => model.OwnerId)
-        </dd>
+        @if (Model.EndTime < DateTime.Now)
+        {
+            <dd>EXPIRED</dd>
+        }
+        else
+        {
+            <dd>@Html.DisplayFor(model => model.EndTime)</dd>
+        }
     
         <dt>
             @Html.DisplayNameFor(model => model.OwnerPhone)
@@ -116,7 +112,7 @@
     new { @class = "btn btn-default"})
 </div>
 
-@if (Model.IsOpen)
+@if (Model.EndTime >= DateTime.Now)
 {
     if (User.Identity.IsAuthenticated)
     {

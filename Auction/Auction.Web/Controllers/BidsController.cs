@@ -39,6 +39,7 @@ namespace Auction.Web.Controllers
 
             this.Data.Bids.Add(bid);
             offer.CurrentPrice = bid.Price;
+            offer.Buyer = this.UserProfile;
             this.Data.SaveChanges();
 
             return this.Redirect($"/Offers/Details/{id}");

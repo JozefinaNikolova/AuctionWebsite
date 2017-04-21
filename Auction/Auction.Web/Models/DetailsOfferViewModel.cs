@@ -19,7 +19,6 @@ namespace Auction.Web.Models
         [DisplayName("End Time")]
         public DateTime EndTime { get; set; }
         public byte[] Photo { get; set; }
-        public bool IsOpen { get; set; }
         public string OwnerId { get; set; }
         [DisplayName("Owner Phone Number")]
         public string OwnerPhone { get; set; }
@@ -47,7 +46,6 @@ namespace Auction.Web.Models
                     CurrentPrice = x.CurrentPrice,
                     EndTime = x.EndTime,
                     Photo = x.Photo,
-                    IsOpen = x.IsOpen,
                     OwnerId = x.Owner.Id,
                     OwnerPhone = x.Owner.PhoneNumber, 
                     OwnerEmail = x.Owner.Email,

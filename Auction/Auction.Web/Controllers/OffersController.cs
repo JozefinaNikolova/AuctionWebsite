@@ -15,7 +15,7 @@ namespace Auction.Web.Controllers
         {
             var categoryOffers = this.Data.Offers
                 .All()
-                .Where(x => x.IsOpen && x.isApproved);
+                .Where(x => x.EndTime >= DateTime.Now && x.isApproved);
 
             if (id != null)
             {
@@ -45,7 +45,7 @@ namespace Auction.Web.Controllers
 
             var offers = this.Data.Offers
                 .All()
-                .Where(x => x.IsOpen && x.Owner.UserName == UserProfile.UserName)
+                .Where(x => x.EndTime >= DateTime.Now && x.Owner.UserName == UserProfile.UserName)
                 .Select(AllOffersViewModel.Create);
 
             return View(offers);
@@ -60,7 +60,7 @@ namespace Auction.Web.Controllers
 
             var offers = this.Data.Offers
                 .All()
-                .Where(x => !(x.IsOpen) && x.Buyer.UserName == UserProfile.UserName)
+                .Where(x => x.EndTime < DateTime.Now && x.Buyer.UserName == UserProfile.UserName)
                 .Select(AllOffersViewModel.Create);
 
             return View(offers);
@@ -120,7 +120,6 @@ namespace Auction.Web.Controllers
                 StartPrice = model.StartPrice,
                 CurrentPrice = model.StartPrice,
                 EndTime = time,
-                IsOpen = true,
                 isApproved = false,
                 Photo = fileArr,
                 Owner = UserProfile,
@@ -171,12 +170,14 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult Edit(EditOfferViewModel model, HttpPostedFileBase file)
         {
+            var offer = this.Data.Offers.Find(model.Id);
+
             if (this.UserProfile == null)
             {
                 return this.Redirect("/Offers/Index");
             }
 
-            if (this.UserProfile.Id != model.UserId && !isAdmin())
+            if (this.UserProfile.Id != offer.Owner.Id && !isAdmin())
             {
                 return this.Redirect("/Offers/Index");
             }
@@ -204,7 +205,6 @@ namespace Auction.Web.Controllers
                 .Where(x => x.Name == model.CategoryName)
                 .FirstOrDefault();
 
-            var offer = this.Data.Offers.Find(model.Id);
             offer.Name = model.Name;
             offer.Description = model.Description;
             if(file != null)
