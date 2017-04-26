@@ -3,7 +3,7 @@ namespace Auction.Web.Models
 {
     public class AddCategoryViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please enter category name")]
         [MaxLength(15)]
         public string Name { get; set; }
     }

@@ -85,6 +85,19 @@ namespace Auction.Web.Controllers
                 return this.Redirect("/Offers/Index");
             }
 
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            bool categoryExists = this.Data.Categories.All().Any(x => x.Name == model.CategoryName);
+
+            if(!categoryExists)
+            {
+                ModelState.AddModelError("", "Invalid category.");
+                return View(model);
+            }
+
             int length = 0;
             if(file != null)
             {
@@ -141,20 +154,29 @@ namespace Auction.Web.Controllers
                 .Select(DetailsOfferViewModel.Create)
                 .FirstOrDefault();
 
+            if(offer == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             return this.View(offer);
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var a = this.UserProfile;
+            if (this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
             var offer = this.Data.Offers
                 .All()
                 .Where(x => x.Id == id)
                 .Select(EditOfferViewModel.Create)
                 .FirstOrDefault();
 
-            if (this.UserProfile == null)
+            if(offer == null)
             {
                 return this.Redirect("/Offers/Index");
             }
@@ -170,18 +192,33 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult Edit(EditOfferViewModel model, HttpPostedFileBase file)
         {
-            var offer = this.Data.Offers.Find(model.Id);
-
             if (this.UserProfile == null)
             {
                 return this.Redirect("/Offers/Index");
             }
+
+            var offer = this.Data.Offers.Find(model.Id);
 
             if (this.UserProfile.Id != offer.Owner.Id && !isAdmin())
             {
                 return this.Redirect("/Offers/Index");
             }
 
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var category = this.Data.Categories.All()
+                .Where(x => x.Name == model.CategoryName)
+                .FirstOrDefault();
+
+            if(category == null)
+            {
+                ModelState.AddModelError("", "Invalid category.");
+                return View(model);
+            }
+            
             int length = 0;
             if (file != null)
             {
@@ -200,10 +237,6 @@ namespace Auction.Web.Controllers
                     fileArr = ms.GetBuffer();
                 }
             }
-
-            var category = this.Data.Categories.All()
-                .Where(x => x.Name == model.CategoryName)
-                .FirstOrDefault();
 
             offer.Name = model.Name;
             offer.Description = model.Description;
@@ -227,8 +260,15 @@ namespace Auction.Web.Controllers
             {
                 return this.Redirect("/Offers/Index");
             }
+            var offer = this.Data.Offers.Find(id);
 
-            var ownerId = this.Data.Offers.Find(id).Owner.Id;
+            if(offer == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
+            var ownerId = offer.Owner.Id;
+
             if (this.UserProfile.Id != ownerId && !isAdmin())
             {
                 return this.Redirect("/Offers/Index");
