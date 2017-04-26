@@ -1,5 +1,6 @@
 ﻿using Auction.Models;
 using Auction.Web.Models;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Auction.Web.Controllers
@@ -20,9 +21,22 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult Add(AddCategoryViewModel model)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             if (!isAdmin())
             {
                 return this.Redirect("/Offers/Index");
+            }
+
+            bool categoryExists = this.Data.Categories.All().Any(x => x.Name == model.Name);
+
+            if(categoryExists)
+            {
+                ModelState.AddModelError("", "Category already exists.");
+                return View(model);
             }
 
             var category = new Category
