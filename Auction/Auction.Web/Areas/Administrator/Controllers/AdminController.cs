@@ -32,6 +32,12 @@ namespace Auction.Web.Areas.Administrator.Controllers
             }
 
             var offer = this.Data.Offers.Find(id);
+
+            if(offer == null)
+            {
+                return this.Redirect("/Admin/Approve");
+            }
+
             offer.isApproved = true;
             this.Data.SaveChanges();
 
@@ -46,7 +52,14 @@ namespace Auction.Web.Areas.Administrator.Controllers
                 return this.Redirect("/Offers/Index");
             }
 
-            var offer = this.Data.Offers.Delete(id);
+            var offer = this.Data.Offers.Find(id);
+
+            if(offer == null)
+            {
+                return this.Redirect("/Admin/Approve");
+            }
+
+            this.Data.Offers.Delete(id);
             this.Data.SaveChanges();
 
             return this.Redirect("/Admin/Approve");
