@@ -22,6 +22,23 @@ namespace Auction.Web.Controllers
         [HttpPost]
         public ActionResult Add(int id, AddBidViewModel model)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var currentPrice = this.Data.Offers
+                .All()
+                .Where(x => x.Id == id)
+                .Select(x => x.CurrentPrice)
+                .FirstOrDefault();
+
+            if (model.Price <= currentPrice)
+            {
+                ModelState.AddModelError("", "Invalid bid.");
+                return View(model);
+            }
+
             if (this.UserProfile == null)
             {
                 return this.Redirect("/Offers/Index");
@@ -61,7 +78,7 @@ namespace Auction.Web.Controllers
         [HttpGet]
         public ActionResult BidsView(string id)
         {
-            if (this.UserProfile == null)
+            if (!isAdmin())
             {
                 return this.Redirect("/Offers/Index");
             }
