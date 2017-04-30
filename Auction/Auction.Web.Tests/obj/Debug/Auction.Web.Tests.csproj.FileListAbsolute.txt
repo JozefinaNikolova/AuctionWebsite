@@ -58,3 +58,14 @@ C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Auction
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\obj\Debug\Auction.Web.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\obj\Debug\Auction.Web.Tests.dll
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\obj\Debug\Auction.Web.Tests.pdb
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Castle.Core.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Moq.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\WebActivatorEx.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Ninject.Web.Common.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Ninject.dll
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Castle.Core.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Moq.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Ninject.Web.Common.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Ninject.xml

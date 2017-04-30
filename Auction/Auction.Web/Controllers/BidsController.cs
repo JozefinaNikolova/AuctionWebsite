@@ -3,15 +3,26 @@ using Auction.Web.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using Auction.Data;
 
 namespace Auction.Web.Controllers
 {
     public class BidsController : BaseController
     {
+        public BidsController() : base() { }
+        public BidsController(IAuctionData data) : base(data){ }
+        public BidsController(IAuctionData data, User userProfile) : base(data, userProfile) { }
+
         [HttpGet]
         public ActionResult Add(int id)
         {
             if(this.UserProfile == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
+            var offer = this.Data.Offers.Find(id);
+            if(offer == null)
             {
                 return this.Redirect("/Offers/Index");
             }
@@ -27,24 +38,22 @@ namespace Auction.Web.Controllers
                 return View(model);
             }
 
-            var currentPrice = this.Data.Offers
-                .All()
-                .Where(x => x.Id == id)
-                .Select(x => x.CurrentPrice)
-                .FirstOrDefault();
-
-            if (model.Price <= currentPrice)
-            {
-                ModelState.AddModelError("", "Invalid bid.");
-                return View(model);
-            }
-
             if (this.UserProfile == null)
             {
                 return this.Redirect("/Offers/Index");
             }
 
             var offer = this.Data.Offers.Find(id);
+            if (offer == null)
+            {
+                return this.Redirect("/Offers/Index");
+            }
+
+            if (model.Price <= offer.CurrentPrice)
+            {
+                ModelState.AddModelError("", "Invalid bid.");
+                return View(model);
+            }
 
             var bid = new Bid()
             {
