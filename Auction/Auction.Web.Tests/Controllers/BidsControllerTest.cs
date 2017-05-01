@@ -168,5 +168,25 @@ namespace Auction.Web.Tests.Controllers
 
             Assert.AreEqual(0, bids.Count());
         }
+
+        [TestMethod]
+        public void BidsHistory_ShouldReturnCorrectPartialView()
+        {
+            // Arrange
+            var bids = new List<Bid>();
+            bids.Add(new Bid { Id = 1, Price = 2 });
+            bids.Add(new Bid { Id = 2, Price = 3 });
+
+            // Setup repository
+            mockedBidsRepo.Setup(r => r.All()).Returns(bids.AsQueryable());
+
+            // Setup controller
+            var controller = new BidsController(mockedContext.Object, user);
+
+            // Controller should render correct partial view with model
+            controller.WithCallTo(x => x.BidsHistory(1))
+                .ShouldRenderPartialView("_OfferBidsHistory")
+                .WithModel<IEnumerable<OfferBidsHistoryViewModel>>();
+        }
     }
 }
