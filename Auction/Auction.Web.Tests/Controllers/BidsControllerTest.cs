@@ -15,11 +15,28 @@ namespace Auction.Web.Tests.Controllers
     [TestClass]
     public class BidsControllerTest
     {
+        private User user;
+        private Mock<IRepository<Offer>> mockedOfferRepo;
+        private Mock<IRepository<Bid>> mockedBidsRepo;
+        private Mock<IAuctionData> mockedContext;
+
+        [TestInitialize]
+        public void Init()
+        {
+            user = new User() { Id = "1", UserName = "Fake User", PasswordHash = "1234", FullName = "Test" };
+
+            mockedOfferRepo = new Mock<IRepository<Offer>>();
+            mockedBidsRepo = new Mock<IRepository<Bid>>();
+            
+            mockedContext = new Mock<IAuctionData>();
+            mockedContext.Setup(c => c.Offers).Returns(mockedOfferRepo.Object);
+            mockedContext.Setup(c => c.Bids).Returns(mockedBidsRepo.Object);
+        }
+
         [TestMethod]
         public void Add_SuccessfullyAddsBid()
         {
             //Arrange
-            var user = new User() { Id = "1", UserName = "Fake User", PasswordHash = "1234" , FullName = "Test"};
             var fakeOffer = new Offer()
             {
                 Id = 1,
@@ -38,18 +55,10 @@ namespace Auction.Web.Tests.Controllers
             var bids = new List<Bid>();
 
             // Setup repositories
-            var mockedOfferRepo = new Mock<IRepository<Offer>>();
             mockedOfferRepo.Setup(r => r.Find(It.IsAny<int>())).Returns(fakeOffer);
-            var mockedBidsRepo = new Mock<IRepository<Bid>>();
             mockedBidsRepo.Setup(r => r.Add(It.IsAny<Bid>()))
             .Callback<Bid>(b => bids.Add(b));
-
-            // Setup data layer
-            var mockedContext = new Mock<IAuctionData>();
-            mockedContext.Setup(c => c.Offers).Returns(mockedOfferRepo.Object);
-            mockedContext.Setup(c => c.Bids).Returns(mockedBidsRepo.Object);
-
-
+            
             // Setup controller
             var controller = new BidsController(mockedContext.Object, user);
 
@@ -82,18 +91,10 @@ namespace Auction.Web.Tests.Controllers
             var bids = new List<Bid>();
 
             // Setup repositories
-            var mockedOfferRepo = new Mock<IRepository<Offer>>();
             mockedOfferRepo.Setup(r => r.Find(It.IsAny<int>())).Returns(fakeOffer);
-            var mockedBidsRepo = new Mock<IRepository<Bid>>();
             mockedBidsRepo.Setup(r => r.Add(It.IsAny<Bid>()))
             .Callback<Bid>(b => bids.Add(b));
-
-            // Setup data layer
-            var mockedContext = new Mock<IAuctionData>();
-            mockedContext.Setup(c => c.Offers).Returns(mockedOfferRepo.Object);
-            mockedContext.Setup(c => c.Bids).Returns(mockedBidsRepo.Object);
-
-
+            
             // Setup controller
             var controller = new BidsController(mockedContext.Object);
             
@@ -108,8 +109,6 @@ namespace Auction.Web.Tests.Controllers
         public void Add_DoesntAddBid_InvalidOfferId()
         {
             //Arrange
-            var user = new User() { Id = "1", UserName = "Fake User", PasswordHash = "1234", FullName = "Test" };
-
             var bid = new AddBidViewModel()
             {
                 Id = 1,
@@ -119,18 +118,10 @@ namespace Auction.Web.Tests.Controllers
             var bids = new List<Bid>();
 
             // Setup repositories
-            var mockedOfferRepo = new Mock<IRepository<Offer>>();
             mockedOfferRepo.Setup(r => r.Find(It.IsAny<int>())).Returns<IEnumerable<Offer>>(null);
-            var mockedBidsRepo = new Mock<IRepository<Bid>>();
             mockedBidsRepo.Setup(r => r.Add(It.IsAny<Bid>()))
             .Callback<Bid>(b => bids.Add(b));
-
-            // Setup data layer
-            var mockedContext = new Mock<IAuctionData>();
-            mockedContext.Setup(c => c.Offers).Returns(mockedOfferRepo.Object);
-            mockedContext.Setup(c => c.Bids).Returns(mockedBidsRepo.Object);
-
-
+            
             // Setup controller
             var controller = new BidsController(mockedContext.Object, user);
 
@@ -145,7 +136,6 @@ namespace Auction.Web.Tests.Controllers
         public void Add_DoesntAddBid_LowerThanCurrentPrice()
         {
             //Arrange
-            var user = new User() { Id = "1", UserName = "Fake User", PasswordHash = "1234", FullName = "Test" };
             var fakeOffer = new Offer()
             {
                 Id = 1,
@@ -164,17 +154,9 @@ namespace Auction.Web.Tests.Controllers
             var bids = new List<Bid>();
 
             // Setup repositories
-            var mockedOfferRepo = new Mock<IRepository<Offer>>();
             mockedOfferRepo.Setup(r => r.Find(It.IsAny<int>())).Returns(fakeOffer);
-            var mockedBidsRepo = new Mock<IRepository<Bid>>();
             mockedBidsRepo.Setup(r => r.Add(It.IsAny<Bid>()))
             .Callback<Bid>(b => bids.Add(b));
-
-            // Setup data layer
-            var mockedContext = new Mock<IAuctionData>();
-            mockedContext.Setup(c => c.Offers).Returns(mockedOfferRepo.Object);
-            mockedContext.Setup(c => c.Bids).Returns(mockedBidsRepo.Object);
-
 
             // Setup controller
             var controller = new BidsController(mockedContext.Object, user);
