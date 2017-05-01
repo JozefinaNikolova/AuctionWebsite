@@ -69,3 +69,4 @@ C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\EntityF
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Moq.xml
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Ninject.Web.Common.xml
 C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\Ninject.xml
+C:\Users\Jozi\Desktop\AuctionWebsite\Auction\Auction.Web.Tests\bin\Debug\TestStack.FluentMVCTesting.dll

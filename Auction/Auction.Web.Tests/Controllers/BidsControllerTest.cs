@@ -8,6 +8,7 @@ using Auction.Data;
 using Auction.Data.Repositories;
 using Auction.Models;
 using Auction.Web.Models;
+using TestStack.FluentMVCTesting;
 
 namespace Auction.Web.Tests.Controllers
 {
@@ -52,10 +53,10 @@ namespace Auction.Web.Tests.Controllers
             // Setup controller
             var controller = new BidsController(mockedContext.Object, user);
 
-            //Act
-            controller.Add(1, bid);
-            
-            //Assert
+            // Controller should redirect and not add the bid
+            controller.WithCallTo(x => x.Add(1, bid))
+                .ShouldRedirectTo($"/Offers/Details/{fakeOffer.Id}");
+
             Assert.AreEqual(1, bids.Count());
         }
 
@@ -95,11 +96,11 @@ namespace Auction.Web.Tests.Controllers
 
             // Setup controller
             var controller = new BidsController(mockedContext.Object);
+            
+            // Controller should redirect and not add the bid
+            controller.WithCallTo(x => x.Add(1, bid))
+                .ShouldRedirectTo("/Offers/Index");
 
-            //Act
-            controller.Add(1, bid);
-
-            //Assert
             Assert.AreEqual(0, bids.Count());
         }
 
@@ -133,10 +134,10 @@ namespace Auction.Web.Tests.Controllers
             // Setup controller
             var controller = new BidsController(mockedContext.Object, user);
 
-            //Act
-            controller.Add(999, bid);
+            // Controller should redirect and not add the bid
+            controller.WithCallTo(x => x.Add(999, bid))
+                .ShouldRedirectTo("/Offers/Index");
 
-            //Assert
             Assert.AreEqual(0, bids.Count());
         }
 
@@ -178,10 +179,11 @@ namespace Auction.Web.Tests.Controllers
             // Setup controller
             var controller = new BidsController(mockedContext.Object, user);
 
-            //Act
-            controller.Add(1, bid);
+            // Controller should redirect to same view and not add the bid
+            controller.WithCallTo(x => x.Add(1, bid))
+                .ShouldRenderDefaultView()
+                .WithModel<AddBidViewModel>();
 
-            //Assert
             Assert.AreEqual(0, bids.Count());
         }
     }
