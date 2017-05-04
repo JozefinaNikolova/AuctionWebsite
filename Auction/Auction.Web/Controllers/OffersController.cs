@@ -1,4 +1,5 @@
-﻿using Auction.Models;
+﻿using Auction.Data;
+using Auction.Models;
 using Auction.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,10 @@ namespace Auction.Web.Controllers
 {
     public class OffersController : BaseController
     {
+        public OffersController() : base() { }
+        public OffersController(IAuctionData data) : base(data){ }
+        public OffersController(IAuctionData data, User userProfile) : base(data, userProfile) { }
+
         public ActionResult Index(int? id, string searchString = default(string))
         {
             var categoryOffers = this.Data.Offers
@@ -90,7 +95,15 @@ namespace Auction.Web.Controllers
                 return this.View(model);
             }
 
-            bool categoryExists = this.Data.Categories.All().Any(x => x.Name == model.CategoryName);
+            bool categoryExists = true;
+            if(model.CategoryName == null)
+            {
+                categoryExists = false;
+            }
+            else
+            {
+                categoryExists = this.Data.Categories.All().Any(x => x.Name == model.CategoryName);
+            }
 
             if(!categoryExists)
             {
@@ -142,7 +155,7 @@ namespace Auction.Web.Controllers
             this.Data.Offers.Add(offer);
             this.Data.SaveChanges();
 
-            return this.RedirectToAction("Index", "Offers");
+            return this.Redirect("/Offers/Index");
         }
 
         [HttpGet]
@@ -250,7 +263,7 @@ namespace Auction.Web.Controllers
 
             this.Data.SaveChanges();
 
-            return this.RedirectToAction("Index", "Offers");
+            return this.Redirect("/Offers/Index");
         }
 
         [HttpGet]

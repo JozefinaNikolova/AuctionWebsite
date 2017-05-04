@@ -47,7 +47,7 @@ namespace Auction.Web.Models
                     EndTime = x.EndTime,
                     Photo = x.Photo,
                     OwnerId = x.Owner.Id,
-                    OwnerPhone = x.Owner.PhoneNumber, 
+                    OwnerPhone = x.Owner.PhoneNumber,
                     OwnerEmail = x.Owner.Email,
                     OwnerName = x.Owner.FullName,
                     OwnerUsername = x.Owner.UserName,
