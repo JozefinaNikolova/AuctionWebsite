@@ -287,6 +287,13 @@ namespace Auction.Web.Controllers
                 return this.Redirect("/Offers/Index");
             }
 
+            var bidIds = offer.Bids.Select(x => x.Id);
+
+            foreach (var bidId in bidIds.ToList())
+            {
+                this.Data.Bids.Delete(bidId);
+            }
+
             this.Data.Offers.Delete(id);
             this.Data.SaveChanges();
 

@@ -325,11 +325,11 @@ namespace Auction.Web.Tests.Controllers
             // Arrange
             var offer = new EditOfferViewModel();
 
-            // Setup context to have user as administrator
-            Mock<ControllerContext> mockContext = GetContext(true);
+            // Setup context to have user as not administrator
+            Mock<ControllerContext> mockContext = GetContext(false);
 
-            // Setup controller
-            var controller = new OffersController(mockedContext.Object, user)
+            // Setup controller with no user
+            var controller = new OffersController(mockedContext.Object)
             {
                 ControllerContext = mockContext.Object
             };

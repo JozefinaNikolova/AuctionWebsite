@@ -58,15 +58,7 @@ namespace Auction.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if(this.isAdmin())
-            {
-                ViewBag.ReturnUrl = "/Admin/Approve";
-            }
-            else
-            {
-                ViewBag.ReturnUrl = "/Offers/Index";
-            }
-            
+            ViewBag.ReturnUrl = "/Offers/Index";
             return View();
         }
 
@@ -84,7 +76,8 @@ namespace Auction.Web.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            User signedUser = UserManager.FindByEmail(model.Email);
+            var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -468,7 +461,7 @@ namespace Auction.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Offers");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
